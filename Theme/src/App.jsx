@@ -1,14 +1,21 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
-
+import "./App.css";
+import bg from './assets/bg.png'
+import Home from "./Componenets/Home/Home";
+import Page from "./Componenets/Page/Page";
+import { useState } from "react";
 function App() {
-  const [count, setCount] = useState(0)
+  const [theme , setTheme] = useState({});
+  const [collection ,setCollection] = useState([])
+  const [isPageVisible , setIsPageVisible] = useState(false)
+  
 
-  return (
-        <div>App</div>
-  )
+
+
+
+  return <div>
+    <Home setCollection = {setCollection} collection = {collection} />
+    <Page theme = {theme}/>
+  </div>;
 }
 
-export default App
+export default App;
