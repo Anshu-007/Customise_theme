@@ -4,8 +4,9 @@ import { Modal, Form, Input, ColorPicker, Upload, Button } from "antd";
 import { PlusOutlined, UploadOutlined } from "@ant-design/icons";
 import AddMenu from "./AddMenu";
 
-const Formcomp = ({ isFormVisible, setIsFormVisible }) => {
+const Formcomp = ({ isFormVisible, setIsFormVisible,setCollection,collection }) => {
   const [menuItems ,setMenuItems] = useState([])
+  const [imageUrl , setImageUrl] = useState("")
   const [input, setInput] = useState({
     name: "",
     primary: "",
@@ -17,10 +18,19 @@ const Formcomp = ({ isFormVisible, setIsFormVisible }) => {
 
   function submit(e) {
     handleAddMenu(menuItems)
+    let arr = [...collection];
+    arr.push(input)
+    setCollection(arr);
     console.log(input);
+    setIsFormVisible(false)
   }
-  const handleFileChange = (info) => {
-    setInput({ ...input, image: info.fileList });
+  const handleFileChange = ({ fileList }) => {
+    if (fileList && fileList.length > 0) {
+      const file = fileList[0].originFileObj; // Get the file object
+      const previewUrl = URL.createObjectURL(file); // Create preview URL
+      setImageUrl(previewUrl); // Set the preview image URL
+      setInput({ ...input, image: file }); // Store the file in the state
+    }
   };
   const handleAddMenu = (menuItems) => {
     setInput({ ...input, "menuItems":menuItems });
@@ -75,7 +85,7 @@ const Formcomp = ({ isFormVisible, setIsFormVisible }) => {
             <ColorPicker
               onChange={(e) => setInput({ ...input, primary: e.toCssString() })}
             />
-            <Input style={{ width: "278px" }} />
+            <Input value={input.primary} style={{ width: "278px" }} />
           </div>
         </Form.Item>
         <Form.Item label="Secondary color">
@@ -83,7 +93,7 @@ const Formcomp = ({ isFormVisible, setIsFormVisible }) => {
             <ColorPicker
               onChange={(e) => setInput({...input , secondary : e.toCssString()})}
             />
-            <Input style={{ width: "278px" }} />
+            <Input value={input.secondary} style={{ width: "278px" }} />
           </div>
         </Form.Item>
         <Form.Item label="text color">
@@ -91,7 +101,7 @@ const Formcomp = ({ isFormVisible, setIsFormVisible }) => {
             <ColorPicker
               onChange={(e) => setInput({ ...input, text: e.toCssString() })}
             />
-            <Input style={{ width: "278px" }} />
+            <Input value={input.text} style={{ width: "278px" }} />
           </div>
         </Form.Item>
 

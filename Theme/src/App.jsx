@@ -12,11 +12,18 @@ function App() {
   
 
 
-
-
+  function showPage(index){
+    setTheme({...collection[index]})
+    setIsPageVisible(true);
+  }
+  console.log(collection)
   return <div>
-    <Home setCollection = {setCollection} collection = {collection} />
-    <Page theme = {theme}/>
+    {isPageVisible ? <Page theme = {theme}  setIsPageVisible = {setIsPageVisible}/>
+    :
+
+    <Home setCollection = {setCollection} collection = {collection} showPage ={showPage} />
+    }
+    
     {/* <AddMenu/> */}
   </div>;
 }

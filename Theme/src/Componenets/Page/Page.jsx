@@ -1,19 +1,21 @@
 import React from 'react';
-import { Layout, Menu } from 'antd';
+import { Button, Layout, Menu } from 'antd';
 import { HomeOutlined, InfoCircleOutlined, PhoneOutlined } from '@ant-design/icons';
 import './Page.css'; // Custom CSS for styling
 
 const { Header, Footer, Content } = Layout;
 
-const Page = () => {
+const Page = ({theme,setIsPageVisible}) => {
+  console.log(theme)
   return (
     <Layout style={{ minHeight: '100vh' }}>
       {/* Header with logo and navigation */}
-      <Header className="page-header">
+      <Header style={{backgroundColor : `${theme.primary}`, text : `${theme.text}`}} className="page-header">
         <div className="logo">
-          <img src="" alt="Logo" />
+          <img src={URL.createObjectURL(theme.image)} alt="Logo" />
         </div>
-        <div className="site-name">Your Website Name</div>
+        <div style={{color : `${theme.text}`}} className="site-name">{theme.name != "" ? theme.name : "Your Website Name"}</div>
+        <Button onClick={()=>setIsPageVisible(false)}>back</Button>
         <Menu theme="dark" mode="horizontal" defaultSelectedKeys={['1']}>
           <Menu.Item key="1" icon={<HomeOutlined />}>
             Home
@@ -28,16 +30,16 @@ const Page = () => {
       </Header>
 
       {/* Content Area */}
-      <Content className="page-content">
-        <div className="content-wrapper">
+      <Content style={{backgroundColor : `${theme.secondary}`}} className="page-content">
+        <div style={{color : `${theme.text}`}} className="content-wrapper">
           <h1>Welcome to Our Website</h1>
           <p>Here are some details about the website.</p>
         </div>
       </Content>
 
       {/* Footer */}
-      <Footer className="page-footer">
-        © {new Date().getFullYear()} theme . All rights reserved.
+      <Footer style={{backgroundColor:`${theme.primary}`,color : `${theme.text}`}} className="page-footer">
+        © {new Date().getFullYear()} `${theme.name}` . All rights reserved.
       </Footer>
     </Layout>
   );

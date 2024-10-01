@@ -14,7 +14,7 @@ const { Header, Footer, Content } = Layout;
 
 
 
-const Home = ({}) => {
+const Home = ({collection , setCollection , showPage}) => {
   let dummyData = []
   const [isFormVisible , setIsFormVisible] = useState(false)
   return (
@@ -48,16 +48,17 @@ const Home = ({}) => {
           padding: "24px",
         }}
       >
+
         <Row style={{ width: "100%" }}>
           {/* Left Section: Dummy Cards */}
           <Col span={12} style={{ padding: "10px"  }}>
             <h2 style={{ textAlign: "center", color: "gray" }}>Cards</h2>
             <Row gutter={[16, 16]}>
-              {dummyData.map((item, index) => (
+              {collection.map((item, index) => (
                 <Col span={8} key={index}>
                   <Card
                   size="large"
-                    title={<h3 className="card-title">{item.title}</h3>}
+                    title={<h3 className="card-title">{item.name}</h3>}
                     bordered={false}
                     hoverable
                     className="custom-card"
@@ -66,8 +67,8 @@ const Home = ({}) => {
                     ]}
                   >
                     <p className="card-description">{item.description}</p>
-                    <Button type="primary" shape="round" size="small">
-                      Learn More
+                    <Button onClick={()=>showPage(index)} type="primary" shape="round" size="small">
+                      show
                     </Button>
                   </Card>
                 </Col>
@@ -76,7 +77,7 @@ const Home = ({}) => {
           </Col>
 
           {/* Right Section: Carousel */}
-          {isFormVisible ? <Formcomp isFormVisible = {isFormVisible} setIsFormVisible = {setIsFormVisible}/>:
+          {isFormVisible ? <Formcomp isFormVisible = {isFormVisible} setIsFormVisible = {setIsFormVisible} collection ={collection} setCollection={setCollection}/>:
           <Col span={12} style={{ padding: "10px" }}>
             <h2 style={{ textAlign: "center", color: "gray" }}>Carousel</h2>
             <Carousel autoplay>
