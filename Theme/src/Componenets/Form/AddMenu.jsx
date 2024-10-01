@@ -13,6 +13,7 @@ const AddMenu = ({handleAddMenu}) => {
     ]);
   };
 
+  // extra line
 
   // Handle form submit
   const changeHandler = (e,idx) => {
