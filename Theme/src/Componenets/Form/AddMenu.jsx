@@ -12,7 +12,6 @@ const AddMenu = ({handleAddMenu}) => {
       { name: '', description: '', price: '', image: null },
     ]);
   };
-  
 
 
   // Handle form submit
