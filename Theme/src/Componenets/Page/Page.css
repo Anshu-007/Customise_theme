@@ -1,0 +1,36 @@
+.page-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #001529;
+  }
+  
+  .logo img {
+    height: 50px;
+  }
+  
+  .site-name {
+    color: white;
+    font-size: 24px;
+    font-weight: bold;
+  }
+  
+  .page-content {
+    padding: 20px;
+    background-color: #f0f2f5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .content-wrapper {
+    text-align: center;
+  }
+  
+  .page-footer {
+    text-align: center;
+    background-color: #001529;
+    color: white;
+    padding: 10px;
+  }
+  

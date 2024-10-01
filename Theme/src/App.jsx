@@ -1,14 +1,31 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import "./App.css";
+import bg from './assets/bg.png'
+import AddMenu from "./Componenets/Form/AddMenu";
+import Home from "./Componenets/Home/Home";
+import Page from "./Componenets/Page/Page";
+import { useState } from "react";
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [theme , setTheme] = useState({});
+  const [collection ,setCollection] = useState([])
+  const [isPageVisible , setIsPageVisible] = useState(false)
+  
 
-  return (
-        <div>App</div>
-  )
+
+  function showPage(index){
+    setTheme({...collection[index]})
+    setIsPageVisible(true);
+  }
+  console.log(collection)
+  return <div>
+    {isPageVisible ? <Page theme = {theme}  setIsPageVisible = {setIsPageVisible}/>
+    :
+
+    <Home setCollection = {setCollection} collection = {collection} showPage ={showPage} />
+    }
+    
+    {/* <AddMenu/> */}
+  </div>;
 }
 
-export default App
+export default App;
