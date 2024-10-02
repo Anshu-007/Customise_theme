@@ -40,7 +40,7 @@ const Page = ({theme,setIsPageVisible}) => {
                     {food.image && (
                       <img
                         className="food-image"
-                        src={URL.createObjectURL(food.image)}
+                        src={URL.createObjectURL(food.image)} 
                         alt={food.name}
                       />
                     )}
