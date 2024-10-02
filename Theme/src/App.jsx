@@ -1,6 +1,6 @@
 import "./App.css";
-import bg from './assets/bg.png'
-import AddMenu from "./Componenets/Form/AddMenu";
+
+
 import Home from "./Componenets/Home/Home";
 import Page from "./Componenets/Page/Page";
 import { useState } from "react";

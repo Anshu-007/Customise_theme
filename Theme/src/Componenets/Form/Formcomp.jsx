@@ -2,11 +2,15 @@ import React from "react";
 import { useState } from "react";
 import { Modal, Form, Input, ColorPicker, Upload, Button } from "antd";
 import { PlusOutlined, UploadOutlined } from "@ant-design/icons";
-import AddMenu from "./AddMenu";
 
-const Formcomp = ({ isFormVisible, setIsFormVisible,setCollection,collection }) => {
-  const [menuItems ,setMenuItems] = useState([])
-  const [imageUrl , setImageUrl] = useState("")
+const Formcomp = ({
+  isFormVisible,
+  setIsFormVisible,
+  setCollection,
+  collection,
+}) => {
+  const [menuItems, setMenuItems] = useState([]);
+
   const [input, setInput] = useState({
     name: "",
     primary: "",
@@ -18,28 +22,25 @@ const Formcomp = ({ isFormVisible, setIsFormVisible,setCollection,collection }) 
 
   function submit() {
     // setInput(prevState => ({ ...prevState,"menuItems": menuItems }));
-  
+
     let updatedCollection = [...collection];
-    updatedCollection.push({...input ,"menuItems" : menuItems});
-  
+    updatedCollection.push({ ...input, menuItems: menuItems });
+
     setCollection(updatedCollection);
-  
+
     console.log("Menu Items: ", menuItems);
     console.log("Input Object: ", input);
-  
+
     setIsFormVisible(false);
   }
-  
+
   const handleFileChange = ({ fileList }) => {
     if (fileList && fileList.length > 0) {
       const file = fileList[0].originFileObj; // Get the file object
       const previewUrl = URL.createObjectURL(file); // Create preview URL
-      setImageUrl(previewUrl); // Set the preview image URL
+      // setImageUrl(previewUrl);
       setInput({ ...input, image: file }); // Store the file in the state
     }
-  };
-  const handleAddMenu = (menuItems) => {
-    setInput({ ...input, "menuItems":menuItems });
   };
 
   // function changeHandler(e){
@@ -54,16 +55,16 @@ const Formcomp = ({ isFormVisible, setIsFormVisible,setCollection,collection }) 
   const addMenuItem = () => {
     setMenuItems([
       ...menuItems,
-      { name: '', description: '', price: '', image: null },
+      { name: "", description: "", price: "", image: null },
     ]);
-  }
+  };
   const normFile = (e) => {
     if (Array.isArray(e)) {
       return e;
     }
     return e?.fileList;
   };
-  
+
   return (
     <Modal
       open={isFormVisible}
@@ -71,20 +72,13 @@ const Formcomp = ({ isFormVisible, setIsFormVisible,setCollection,collection }) 
       footer={null}
       title="Add Buisiness"
     >
-
-
-
-
-
-
       <Form
         style={{
           maxWidth: "400px",
-          maxHeight:"400px",
-          overflow:"auto",
-          scrollbarWidth:"none",
-          msOverflowStyle :"none"
-          
+          maxHeight: "400px",
+          overflow: "auto",
+          scrollbarWidth: "none",
+          msOverflowStyle: "none",
         }}
         labelCol={{ span: 8 }}
         wrapperCol={{ span: 14 }}
@@ -108,7 +102,9 @@ const Formcomp = ({ isFormVisible, setIsFormVisible,setCollection,collection }) 
         <Form.Item label="Secondary color">
           <div style={{ display: "flex", gap: "4px" }}>
             <ColorPicker
-              onChange={(e) => setInput({...input , secondary : e.toCssString()})}
+              onChange={(e) =>
+                setInput({ ...input, secondary: e.toCssString() })
+              }
             />
             <Input value={input.secondary} style={{ width: "278px" }} />
           </div>
@@ -158,7 +154,7 @@ const Formcomp = ({ isFormVisible, setIsFormVisible,setCollection,collection }) 
                   <Input
                     name="name"
                     onChange={(e) => {
-                      handleMenuChange(e,index,"name");
+                      handleMenuChange(e, index, "name");
                     }}
                     placeholder="Enter item name"
                   />
@@ -177,7 +173,7 @@ const Formcomp = ({ isFormVisible, setIsFormVisible,setCollection,collection }) 
                 >
                   <Input
                     name="description"
-                    onChange={(e)=>handleMenuChange(e,index,"description")}
+                    onChange={(e) => handleMenuChange(e, index, "description")}
                     placeholder="Enter item description"
                   />
                 </Form.Item>
@@ -192,8 +188,9 @@ const Formcomp = ({ isFormVisible, setIsFormVisible,setCollection,collection }) 
                 >
                   <Input
                     name="price"
-                    onChange={(e) =>{handleMenuChange(e,index,"price")}}
-                    
+                    onChange={(e) => {
+                      handleMenuChange(e, index, "price");
+                    }}
                     type="number"
                     placeholder="Enter item price"
                   />
@@ -236,5 +233,4 @@ const Formcomp = ({ isFormVisible, setIsFormVisible,setCollection,collection }) 
   );
 };
 
-
-export default Formcomp
+export default Formcomp;

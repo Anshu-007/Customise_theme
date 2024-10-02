@@ -33,4 +33,83 @@
     color: white;
     padding: 10px;
   }
+  .food-card {
+    border-radius: 10px;
+    overflow: hidden;
+    text-align: center;
+    height: 280px;
+    width : 300px
+  }
+  
+  .image-container {
+    position: relative;
+    height: 100px;
+    overflow: hidden;
+  }
+  
+  .food-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  .image-container:hover .food-image {
+    transform: scale(1.05);
+  }
+  
+  .image-overlay {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 50%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+  }
+  
+  .image-container:hover .image-overlay {
+    opacity: 1;
+  }
+  
+  .overlay-text {
+    color: white;
+    text-align: center;
+  }
+  
+  .overlay-text h3 {
+    margin: 0;
+    font-size: 18px;
+  }
+  
+  .overlay-text p {
+    margin: 0;
+    font-size: 14px;
+  }
+  
+  .card-content {
+    padding: 16px;
+  }
+  
+  .card-content h3 {
+    margin-bottom: 8px;
+    font-size: 18px;
+  }
+  
+  .card-content p {
+    margin-bottom: 4px;
+    font-size: 14px;
+  }
+  
+  .card-content .price {
+    font-weight: bold;
+    color: #ff4d4f;
+  }
+  
+  .card-content .ant-btn {
+    margin-top: 10px;
+  }
   
