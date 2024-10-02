@@ -16,14 +16,20 @@ const Formcomp = ({ isFormVisible, setIsFormVisible,setCollection,collection }) 
     menuItems: [],
   });
 
-  function submit(e) {
-    handleAddMenu(menuItems)
-    let arr = [...collection];
-    arr.push(input)
-    setCollection(arr);
-    console.log(input);
-    setIsFormVisible(false)
+  function submit() {
+    // setInput(prevState => ({ ...prevState,"menuItems": menuItems }));
+  
+    let updatedCollection = [...collection];
+    updatedCollection.push({...input ,"menuItems" : menuItems});
+  
+    setCollection(updatedCollection);
+  
+    console.log("Menu Items: ", menuItems);
+    console.log("Input Object: ", input);
+  
+    setIsFormVisible(false);
   }
+  
   const handleFileChange = ({ fileList }) => {
     if (fileList && fileList.length > 0) {
       const file = fileList[0].originFileObj; // Get the file object
@@ -65,9 +71,20 @@ const Formcomp = ({ isFormVisible, setIsFormVisible,setCollection,collection }) 
       footer={null}
       title="Add Buisiness"
     >
+
+
+
+
+
+
       <Form
         style={{
           maxWidth: "400px",
+          maxHeight:"400px",
+          overflow:"auto",
+          scrollbarWidth:"none",
+          msOverflowStyle :"none"
+          
         }}
         labelCol={{ span: 8 }}
         wrapperCol={{ span: 14 }}
@@ -160,7 +177,7 @@ const Formcomp = ({ isFormVisible, setIsFormVisible,setCollection,collection }) 
                 >
                   <Input
                     name="description"
-                    onChange={()=>handleMenuChange(e,index,"description")}
+                    onChange={(e)=>handleMenuChange(e,index,"description")}
                     placeholder="Enter item description"
                   />
                 </Form.Item>
